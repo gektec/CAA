@@ -79,6 +79,7 @@ def main():
                     break
         elif mode == 'select':
             logger.info("State: select")
+            
             # 联机
             # double_tap(500, 900)
             # time.sleep(1)
@@ -87,6 +88,7 @@ def main():
             # time.sleep(1)
             # 单机
             double_tap(1500, 800)
+            
             
             time.sleep(0.5)
             double_tap(1760, 900)
@@ -110,7 +112,7 @@ def main():
             predicted = y_pred[0]
             logger.warning(f"Predicted {'WIN' if y_pred[0]==1 else 'LOSE'}, Probability: {prob[0][1]:.2%}")  # 重要输出用WARNING
 
-            # 联机模式
+            # # 联机模式
             # time.sleep(random.random() * 5 + 6)
             # if y_pred[0] == 1:
             #     double_tap(960, 680)
@@ -120,7 +122,7 @@ def main():
             #     double_tap(960, 680)
             #     time.sleep(0.5)
             #     double_tap(1580, 950)  
-            # 单机模式
+            # # 单机模式
             double_tap(960, 680)
 
 

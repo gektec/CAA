@@ -129,7 +129,7 @@ def ocr_number(
     # 2. Otsu 二值化
     _, bw = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)
     _, bw = cv2.threshold(gray, 200, 255, cv2.THRESH_BINARY)
-    save_debug_image(bw, "step3_bw_otsu")
+    # save_debug_image(bw, "step3_bw_otsu")
 
     # 3. 开运算去噪
     # kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (2,2))
@@ -216,3 +216,9 @@ def ocr_number(
         return int(s)
     except ValueError:
         return None
+    
+if __name__ == "__main__":
+    # 测试函数
+    img = Image.open("backup/left_num_3.png") 
+    result = ocr_number(img, pattern_dir=DIGIT_PATTERN_DIR, threshold=0.8, n=2)
+    print(f"OCR Result: {result}")

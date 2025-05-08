@@ -12,10 +12,10 @@ def connect_device():
     Connect to Android emulator/device via ADB.
     """
     try:
-        subprocess.run([ADB_PATH, 'connect', '127.0.0.1:16384'], check=True)
-        print("Connected to Android emulator at 127.0.0.1:16384")
-        # subprocess.run([ADB_PATH, 'connect', '127.0.0.1:16416'], check=True)
-        # print("Connected to Android emulator at 127.0.0.1:16416")
+        # subprocess.run([ADB_PATH, 'connect', '127.0.0.1:16384'], check=True)
+        # print("Connected to Android emulator at 127.0.0.1:16384")
+        subprocess.run([ADB_PATH, 'connect', '127.0.0.1:16416'], check=True)
+        print("Connected to Android emulator at 127.0.0.1:16416")
     except subprocess.CalledProcessError as e:
         print(f"Error connecting via ADB: {e}")
 
@@ -37,7 +37,6 @@ def take_screenshot():
         img_data = result.stdout
         img = Image.open(io.BytesIO(img_data))
         # Optionally save to file
-        img.save(FULL_SCREENSHOT_PATH)
         return img
     except subprocess.CalledProcessError as e:
         print(f"Error taking screenshot: {e}")
