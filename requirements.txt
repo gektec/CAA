@@ -41,3 +41,6 @@ six==1.16.0
 tzdata==2025.1
 wheel==0.45.0
 zipp==3.21.0
+scikit-image
+xgboost
+scikit-learn

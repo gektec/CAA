@@ -4,7 +4,7 @@ import time
 from config import ADB_PATH, WAIT_TIME, FULL_SCREENSHOT_PATH
 from PIL import Image
 import io
-
+DEVICE_SERIAL = '127.0.0.1:16384' 
 
 
 def connect_device():
@@ -12,10 +12,10 @@ def connect_device():
     Connect to Android emulator/device via ADB.
     """
     try:
-        # subprocess.run([ADB_PATH, 'connect', '127.0.0.1:16384'], check=True)
-        # print("Connected to Android emulator at 127.0.0.1:16384")
-        subprocess.run([ADB_PATH, 'connect', '127.0.0.1:16416'], check=True)
-        print("Connected to Android emulator at 127.0.0.1:16416")
+        subprocess.run([ADB_PATH, 'connect', '127.0.0.1:16384'], check=True)
+        print("Connected to Android emulator at 127.0.0.1:16384")
+        # subprocess.run([ADB_PATH, 'connect', '127.0.0.1:16416'], check=True)
+        # print("Connected to Android emulator at 127.0.0.1:16416")
     except subprocess.CalledProcessError as e:
         print(f"Error connecting via ADB: {e}")
 
@@ -29,7 +29,7 @@ def take_screenshot():
     # Use adb exec-out to capture screen in PNG format
     try:
         result = subprocess.run(
-            [ADB_PATH, 'exec-out', 'screencap', '-p'],
+            [ADB_PATH, '-s', DEVICE_SERIAL,  'exec-out', 'screencap', '-p'],
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
             check=True
@@ -48,7 +48,7 @@ def tap(x, y):
     Simulate a tap on the device at (x, y).
     """
     try:
-        subprocess.run([ADB_PATH, 'shell', 'input', 'tap', str(x), str(y)], check=True)
+        subprocess.run([ADB_PATH, '-s', DEVICE_SERIAL, 'shell', 'input', 'tap', str(x), str(y)], check=True)
     except subprocess.CalledProcessError as e:
         print(f"Error tapping at ({x}, {y}): {e}")
 
